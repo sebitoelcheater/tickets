@@ -1,12 +1,12 @@
 <?php
-include('SQL.class.php');
-include('Session.class.php');
-include('Person.class.php');
+include('../clases/SQL.class.php');
+include('../clases/Session.class.php');
+include('../clases/Person.class.php');
 
 $rut = $_POST['user'];
 $pass = $_POST['password'];
 
-$user = new Person($rut);
+$user = new Rut($rut);
 
 if ($user->validate($pass)){
 	$S = new Session;

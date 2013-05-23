@@ -1,3 +1,9 @@
+<?php
+include('clases/SQL.class.php');
+$S = new SQL;
+$S -> sqlExecute("");
+?>
+
 <meta http-equiv="content-type" content="text/xml; charset=utf-8" />
 
 <center>

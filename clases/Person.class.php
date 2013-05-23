@@ -8,7 +8,7 @@ class Rut{
 		$this->db = new SQL;
 	}
 
-	function User(){
+	function fusion(){
 		$query = "SELECT * FROM person WHERE $rut='".$this->rut."'";
 		$result = $this->db->sqlExecute($query);
 		$row = pg_fetch_row($result);
@@ -41,7 +41,7 @@ class Rut{
 	}
 }
 
-class User extends Rut{
+class Person extends Rut{
 	public $name;
 	public $last_name;
 	public $bird_date;
@@ -64,6 +64,19 @@ class User extends Rut{
 	function register($pass){
 		$query = "INSERT INTO person VALUES ('".$this->rut."','".$this->name."','".$this->$last_name."','".$this->password."','".$this->bird_date."','".$this->mail."')";
 		$this->db->sqlExecute($query);
+	}
+
+	function getName(){
+		return $this->name;
+	}
+	function getLastName(){
+		return $this->last_name;
+	}
+	function getBirdDate(){
+		return $this->bird_date;
+	}
+	function getMail(){
+		return $this->mail;
 	}
 }
 
