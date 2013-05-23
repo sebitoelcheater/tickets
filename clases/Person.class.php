@@ -10,7 +10,7 @@ class Rut{
 
 	function User(){
 		$query = "SELECT * FROM person WHERE $rut='".$this->rut."'";
-		$result = ($this->db)->sqlExecute($query);
+		$result = $this->db->sqlExecute($query);
 		$row = pg_fetch_row($result);
 
 		$name = $row[1];
@@ -28,12 +28,16 @@ class Rut{
         if (empty ($pass)) return false;
 
         $sql = "SELECT password FROM person WHERE rut='".$this->rut."'";
-        $result = ($this->db)->sqlExecute($sql);
+        $result = $this->db->sqlExecute($sql);
         $row = pg_fetch_row($result);
         if ($row[0]==$pass){
         	return true;
         }
         return false;
+	}
+
+	function getRut(){
+		return $this->rut;
 	}
 }
 
@@ -59,7 +63,7 @@ class User extends Rut{
 
 	function register($pass){
 		$query = "INSERT INTO person VALUES ('".$this->rut."','".$this->name."','".$this->$last_name."','".$this->password."','".$this->bird_date."','".$this->mail."')";
-		($this->db)->sqlExecute($query);
+		$this->db->sqlExecute($query);
 	}
 }
 
