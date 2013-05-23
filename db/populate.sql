@@ -45,6 +45,15 @@ constraint ticket_type_sale_fk foreign key(ticket_type) references ticket(ticket
 );
 
 
+create view full_instance as
+select *
+from instance as i inner join event as e on (i.event_id = e.event_id);
+
+create view sale_data as
+select *
+from sale as s inner join ticket as t on (s.ticket_type = t.ticket_id) inner join person on (person.rut = client.id);
+
+
 SET dateStyle TO European;
 
 insert into person (rut,name,last_name,password,birth_date) values
