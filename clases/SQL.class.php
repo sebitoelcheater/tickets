@@ -8,7 +8,7 @@ class SQL{
 	public $password = "pko2RWu";
 
 	function __construct(){
-		$this->conn = pg_pconnect("host=".$this->$host." port=".$this->$port." dbname=".$this->$dbname." user=".$this->$user." password=".$this->$password);
+		$this->conn = pg_pconnect("host=".$this->host." port=".$this->port." dbname=".$this->dbname." user=".$this->user." password=".$this->password);
 		if (!$this->conn) {
 			echo "An error occurredd.\n";
 			exit;

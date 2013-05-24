@@ -9,7 +9,7 @@ class Rut{
 	}
 
 	function fusion(){
-		$query = "SELECT * FROM person WHERE $rut='".$this->rut."'";
+		$query = "SELECT * FROM person WHERE rut='".$this->rut."'";
 		$result = $this->db->sqlExecute($query);
 		$row = pg_fetch_row($result);
 
@@ -18,18 +18,20 @@ class Rut{
 		$bird_date = $row[4];
 		$mail = $row[5];
 
-		$User = new User($this->rut,$name,$last_name,$bird_date,$mail);
+		$User = new Person($this->rut,$name,$last_name,$bird_date,$mail);
 
 		return $User;
 	}
 
-	function login($pass){
+	function validate($pass){
         if (empty($this->rut)) return false;
         if (empty ($pass)) return false;
 
         $sql = "SELECT password FROM person WHERE rut='".$this->rut."'";
         $result = $this->db->sqlExecute($sql);
-        $row = pg_fetch_row($result);
+        while($row = pg_fetch_row($result)){
+			$r = $row[0];
+		}
         if ($row[0]==$pass){
         	return true;
         }
